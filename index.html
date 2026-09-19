@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Untuk Kamu</title>
+  <title>Untuk Windah</title>
+
   <style>
     :root {
       --bg1: #fff1f5;
       --bg2: #ffe4ec;
       --pink: #ff5ca8;
       --pink-dark: #ff2b7d;
-      --peach: #ffd6c7;
       --text: #5b2d3a;
-      --white: #fffdfd;
       --shadow: rgba(255, 92, 168, 0.25);
     }
 
@@ -20,7 +19,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       min-height: 100%;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -74,9 +74,11 @@
         transform: translateY(100px) rotate(-45deg) scale(0.8);
         opacity: 0;
       }
+
       15% {
         opacity: 1;
       }
+
       100% {
         transform: translateY(-120vh) rotate(-45deg) scale(1.2);
         opacity: 0;
@@ -131,8 +133,25 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .foto-kita {
+      width: min(280px, 80vw);
+      height: 280px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 6px solid white;
+      box-shadow: 0 12px 30px rgba(255, 43, 125, 0.25);
+      margin: 8px auto 20px;
+      display: block;
     }
 
     .reasons {
@@ -224,27 +243,49 @@
       .reasons {
         grid-template-columns: 1fr;
       }
+
       .card {
         padding: 24px 18px 20px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="card">
     <div class="badge">Untuk Kamu, Windah Tersayang</div>
-    <h1 class="title">Aku Sayang Banget sama kamu</h1>
+
+    <h1 class="title">Aku Sayang Banget Sama Kamu</h1>
+
     <div class="heart-emoji">💖</div>
 
+    <img
+      src="foto-kamu.jpg"
+      alt="Foto Windah dan Paman Dodek"
+      class="foto-kita"
+    />
+
     <p class="subtitle">
-      Kamu itu bikin hari-hari aku jadi lebih berwarna. Senyum kamu, cara kamu bicara,
-      dan kehadiran kamu itu jadi alasan aku pengen jadi lebih baik tiap hari. dari paman dodek ganteng
+      Kamu itu bikin hari-hari aku jadi lebih berwarna. Senyum kamu, cara kamu
+      bicara, dan kehadiran kamu itu jadi alasan aku pengen jadi lebih baik tiap
+      hari. Dari Paman Dodek ganteng 💕
     </p>
 
     <div class="reasons">
-      <div class="reason"><span>🌷</span>Lucu</div>
-      <div class="reason"><span>✨</span>Nyaman</div>
-      <div class="reason"><span>💞</span>Spesial</div>
+      <div class="reason">
+        <span>🌷</span>
+        Lucu
+      </div>
+
+      <div class="reason">
+        <span>✨</span>
+        Nyaman
+      </div>
+
+      <div class="reason">
+        <span>💞</span>
+        Spesial
+      </div>
     </div>
 
     <div class="actions">
@@ -256,7 +297,7 @@
       Kamu itu alasan aku semangat, dan aku memang suka sama kamu. Terima kasih sudah ada. 💖
     </div>
 
-    <div class="footer">Made with a lot of love</div>
+    <div class="footer">Made with a lot of love 💗</div>
   </div>
 
   <script>
@@ -266,11 +307,14 @@
 
     yesBtn.addEventListener("click", () => {
       messageBox.classList.add("show");
-      messageBox.textContent = "Yeeee, makasih! Aku senang banget kamu baca ini. Semoga kamu tahu, aku suka sama kamu. 💖";
+      messageBox.textContent =
+        "Yeeee, makasih! Aku senang banget kamu baca ini. Semoga kamu tahu, aku suka sama kamu. 💖";
+
       yesBtn.textContent = "Mau banget! 🫶";
       yesBtn.disabled = true;
       yesBtn.style.opacity = "0.9";
-    })
+    });
+
     noBtn.addEventListener("click", () => {
       const phrases = [
         "Eh, jangan malu-malu gitu 😄",
@@ -279,7 +323,9 @@
         "Coba klik yang pink lagi ya, aku baik kok 💕"
       ];
 
-      const randomText = phrases[Math.floor(Math.random() * phrases.length)];
+      const randomText =
+        phrases[Math.floor(Math.random() * phrases.length)];
+
       messageBox.classList.add("show");
       messageBox.textContent = randomText;
 
@@ -290,13 +336,17 @@
 
     function createHeart() {
       const heart = document.createElement("div");
+
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 7 + 8) + "s";
+      heart.style.animationDuration = Math.random() * 7 + 8 + "s";
       heart.style.opacity = (Math.random() * 0.6 + 0.3).toFixed(2);
+
       document.body.appendChild(heart);
 
-      setTimeout(() => heart.remove(), 11000);
+      setTimeout(() => {
+        heart.remove();
+      }, 11000);
     }
 
     setInterval(createHeart, 500);
