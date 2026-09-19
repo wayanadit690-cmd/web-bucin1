@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Kamu</title>
+  <style>
+    :root {
+      --bg1: #fff1f5;
+      --bg2: #ffe4ec;
+      --pink: #ff5ca8;
+      --pink-dark: #ff2b7d;
+      --peach: #ffd6c7;
+      --text: #5b2d3a;
+      --white: #fffdfd;
+      --shadow: rgba(255, 92, 168, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 32px 16px;
+      position: relative;
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: rgba(255, 92, 168, 0.8);
+      transform: rotate(-45deg);
+      border-radius: 4px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: rgba(255, 92, 168, 0.8);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 9px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100px) rotate(-45deg) scale(0.8);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(-45deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      width: min(720px, 92vw);
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 28px 60px var(--shadow);
+      border-radius: 28px;
+      padding: 32px 28px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 92, 168, 0.12);
+      color: var(--pink-dark);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    .title {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      margin: 0;
+      line-height: 1.1;
+      color: var(--pink-dark);
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 16px auto 10px;
+      max-width: 560px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .heart-emoji {
+      font-size: 3rem;
+      display: inline-block;
+      animation: pulse 1.4s infinite;
+      margin: 8px 0 14px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0 28px;
+    }
+
+    .reason {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 92, 168, 0.12);
+      border-radius: 18px;
+      padding: 16px 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .reason span {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .yes-btn {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      box-shadow: 0 12px 28px rgba(255, 43, 125, 0.3);
+    }
+
+    .no-btn {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text);
+      border: 1px solid rgba(91, 45, 58, 0.13);
+    }
+
+    .message-box {
+      margin-top: 28px;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 18px;
+      border-radius: 18px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 92, 168, 0.15);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.35s ease;
+    }
+
+    .message-box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: rgba(91, 45, 58, 0.75);
+    }
+
+    @media (max-width: 600px) {
+      .reasons {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 24px 18px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Untuk Kamu, Cewek Tersayang</div>
+    <h1 class="title">Aku Bucin Banget</h1>
+    <div class="heart-emoji">💖</div>
+
+    <p class="subtitle">
+      Kamu itu bikin hari-hari aku jadi lebih berwarna. Senyum kamu, cara kamu bicara,
+      dan kehadiran kamu itu jadi alasan aku pengen jadi lebih baik tiap hari.
+    </p>
+
+    <div class="reasons">
+      <div class="reason"><span>🌷</span>Lucu</div>
+      <div class="reason"><span>✨</span>Nyaman</div>
+      <div class="reason"><span>💞</span>Spesial</div>
+    </div>
+
+    <div class="actions">
+      <button class="yes-btn" id="yesBtn">Mau, dong 💕</button>
+      <button class="no-btn" id="noBtn">Enggak dulu 😳</button>
+    </div>
+
+    <div class="message-box" id="messageBox">
+      Kamu itu alasan aku semangat, dan aku memang suka sama kamu. Terima kasih sudah ada. 💖
+    </div>
+
+    <div class="footer">Made with a lot of love</div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const messageBox = document.getElementById("messageBox");
+
+    yesBtn.addEventListener("click", () => {
+      messageBox.classList.add("show");
+      messageBox.textContent = "Yeeee, makasih! Aku senang banget kamu baca ini. Semoga kamu tahu, aku suka sama kamu. 💖";
+      yesBtn.textContent = "Mau banget! 🫶";
+      yesBtn.disabled = true;
+      yesBtn.style.opacity = "0.9";
+    });
+
+    noBtn.addEventListener("click", () => {
+      const phrases = [
+        "Eh, jangan malu-malu gitu 😄",
+        "Aku tahu kamu suka baca ini juga, hehe 💗",
+        "Dibilang gini aja lagi, gapapa kok 😌",
+        "Coba klik yang pink lagi ya, aku baik kok 💕"
+      ];
+
+      const randomText = phrases[Math.floor(Math.random() * phrases.length)];
+      messageBox.classList.add("show");
+      messageBox.textContent = randomText;
+
+      noBtn.textContent = "Boleh aku coba lagi?";
+      noBtn.style.background = "rgba(255, 92, 168, 0.12)";
+      noBtn.style.color = "#ff2b7d";
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 7 + 8) + "s";
+      heart.style.opacity = (Math.random() * 0.6 + 0.3).toFixed(2);
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 11000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
